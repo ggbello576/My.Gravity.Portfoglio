@@ -1,0 +1,7 @@
+.experience-layer { position: fixed; z-index: 0; inset: 0; pointer-events: none; }
+.experience-layer::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at center, transparent 25%, rgba(0,0,0,.14) 68%, rgba(0,0,0,.6) 120%); }
+.experience-layer canvas { display: block; width: 100% !important; height: 100% !important; }
+.event-horizon { position: fixed; z-index: 2; inset: -10%; pointer-events: none; opacity: 0; background: radial-gradient(circle at center, transparent 0 3%, rgba(0,0,0,.35) 18%, #030303 58%); transform: scale(1.45); }
+.scene-fallback { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; background: radial-gradient(circle at center, #000 0 8%, #2b1006 8.5%, #030303 33%); }
+.scene-fallback span { width: min(58vw, 36rem); aspect-ratio: 1; border-radius: 50%; box-shadow: 0 0 45px 7px #e28c45, 0 0 100px 25px rgba(126,46,13,.42), inset 0 0 20px #000; background: #000; }
+@media (max-width: 700px) { .experience-layer::after { background: linear-gradient(90deg, rgba(0,0,0,.32), transparent 50%, rgba(0,0,0,.18)); } .scene-fallback span { width: 70vw; } }
