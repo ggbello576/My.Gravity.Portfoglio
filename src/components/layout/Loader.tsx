@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useProgress } from '@react-three/drei'
 
-type Props = { onComplete: () => void }
+type Props = { label: string; onComplete: () => void }
 
-export function Loader({ onComplete }: Props) {
+export function Loader({ label, onComplete }: Props) {
   const { active, progress } = useProgress()
   const [leaving, setLeaving] = useState(false)
   const completed = useRef(false)
@@ -19,7 +19,7 @@ export function Loader({ onComplete }: Props) {
       if (leaving && event.target === event.currentTarget) onComplete()
     }}>
       <div className="loader-inner">
-        <p>INITIALIZING GRAVITY</p>
+        <p>{label}</p>
         <div className="loader-number">{Math.round(progress).toString().padStart(3, '0')}</div>
         <div className="loader-track"><span style={{ transform: `scaleX(${progress / 100})` }} /></div>
       </div>

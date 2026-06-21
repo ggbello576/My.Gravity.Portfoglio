@@ -1,15 +1,15 @@
-export function ContactSection() {
+import type { Translation } from '../../content/translations'
+
+type Props = { translation: Translation['contact'] }
+
+export function ContactSection({ translation }: Props) {
   return (
     <section id="contact" className="section contact-section" aria-labelledby="contact-title">
       <div className="contact-content" data-reveal>
-        <p className="eyebrow">04 / Contact</p>
-        <h2 id="contact-title">Let’s create something<br />with gravity.</h2>
-        <p>Have a project in mind, or simply want to start a conversation?</p>
-        <a className="contact-button" href="mailto:hello@lorenzoamerighi.com"><span>Start a project</span><i aria-hidden="true">↗</i></a>
-        <div className="contact-links">
-          <a href="mailto:hello@lorenzoamerighi.com">hello@lorenzoamerighi.com</a>
-          <a href="https://instagram.com/" target="_blank" rel="noreferrer">Instagram ↗</a>
-        </div>
+        <p className="eyebrow">{translation.label}</p>
+        <h2 id="contact-title">{translation.title}</h2>
+        <p>{translation.copy}</p>
+        <a className="contact-button" href="mailto:gabrigentile05@gmail.com"><span>{translation.button}</span><i aria-hidden="true">↗</i></a>
       </div>
     </section>
   )

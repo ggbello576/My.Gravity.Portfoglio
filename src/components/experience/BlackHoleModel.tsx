@@ -12,16 +12,15 @@ export function BlackHoleModel({ reducedMotion, mobile }: Props) {
   const outer = useRef<THREE.Group>(null)
   const animated = useRef<THREE.Group>(null)
   const { scene, animations } = useGLTF(MODEL_PATH)
-  const clone = useMemo(() => scene.clone(true), [scene])
   const { actions, mixer } = useAnimations(animations, animated)
 
   const normalized = useMemo(() => {
-    const box = new THREE.Box3().setFromObject(clone)
+    const box = new THREE.Box3().setFromObject(scene)
     const size = box.getSize(new THREE.Vector3())
     const center = box.getCenter(new THREE.Vector3())
     const scale = 4.4 / Math.max(size.x, size.y, size.z)
     return { scale, position: center.multiplyScalar(-scale) }
-  }, [clone])
+  }, [scene])
 
   useEffect(() => {
     Object.values(actions).forEach((action) => action?.reset().fadeIn(0.5).play())
@@ -47,7 +46,7 @@ export function BlackHoleModel({ reducedMotion, mobile }: Props) {
   return (
     <group ref={outer}>
       <group ref={animated} scale={normalized.scale} position={normalized.position}>
-        <primitive object={clone} />
+        <primitive object={scene} />
       </group>
     </group>
   )

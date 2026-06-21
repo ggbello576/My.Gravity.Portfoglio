@@ -14,6 +14,7 @@ import { HeroSection } from './components/sections/HeroSection'
 import { ProjectsSection } from './components/sections/ProjectsSection'
 import { ServicesSection } from './components/sections/ServicesSection'
 import { useReducedMotion } from './hooks/useReducedMotion'
+import { useLanguage } from './hooks/useLanguage'
 import { useWebGLSupport } from './hooks/useWebGLSupport'
 import { scrollStore } from './lib/scrollStore'
 import './styles/global.css'
@@ -26,6 +27,7 @@ function App() {
   const reducedMotion = useReducedMotion()
   const webGLSupported = useWebGLSupport()
   const [ready, setReady] = useState(!webGLSupported)
+  const { language, setLanguage, translation } = useLanguage()
 
   useLayoutEffect(() => {
     if (!ready) return
@@ -122,21 +124,21 @@ function App() {
 
   return (
     <>
-      {!ready && <Loader onComplete={() => setReady(true)} />}
+      {!ready && <Loader label={translation.loader} onComplete={() => setReady(true)} />}
       <div className="experience-layer" aria-hidden="true">
         {webGLSupported ? <ExperienceCanvas reducedMotion={reducedMotion} /> : <SceneFallback />}
       </div>
       <div className="event-horizon" aria-hidden="true" />
-      <Navigation />
+      <Navigation language={language} onLanguageChange={setLanguage} translation={translation.nav} />
       <ScrollProgress />
       <main>
-        <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <ServicesSection />
-        <ContactSection />
+        <HeroSection translation={translation.hero} />
+        <AboutSection translation={translation.about} />
+        <ProjectsSection translation={translation.work} />
+        <ServicesSection translation={translation.services} />
+        <ContactSection translation={translation.contact} />
       </main>
-      <Footer />
+      <Footer translation={translation.footer} />
     </>
   )
 }

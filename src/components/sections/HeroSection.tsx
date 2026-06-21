@@ -1,12 +1,16 @@
-export function HeroSection() {
+import type { Translation } from '../../content/translations'
+
+type Props = { translation: Translation['hero'] }
+
+export function HeroSection({ translation }: Props) {
   return (
     <section id="home" className="section hero-section" aria-labelledby="hero-title">
       <div className="hero-content">
-        <p className="eyebrow">LORENZO AMERIGHI / DIGITAL EXPERIENCE</p>
-        <h1 id="hero-title">Ideas have<br />gravity.</h1>
-        <p className="hero-copy">Designing identities and digital experiences built to attract, engage and remain.</p>
+        <p className="eyebrow">{translation.eyebrow}</p>
+        <h1 id="hero-title">{translation.title}</h1>
+        <p className="hero-copy">{translation.copy}</p>
       </div>
-      <div className="scroll-cue"><span>Scroll to enter</span><i /></div>
+      <div className="scroll-cue"><span>{translation.scroll}</span><i /></div>
     </section>
   )
 }
