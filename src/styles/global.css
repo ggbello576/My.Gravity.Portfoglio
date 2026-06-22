@@ -58,6 +58,7 @@ button { color: inherit; }
 .footer-socials a:hover { color: var(--paper); }
 .footer-socials a:hover::after { transform: scaleX(1); transform-origin: left; }
 .footer-socials span { color: var(--accent); }
+.footer-socials svg { width: .85rem; height: .85rem; margin-right: .3rem; color: currentColor; vertical-align: -.15rem; }
 @media (max-width: 700px) {
   .navigation { padding: max(1.35rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right)) 1.35rem max(1.25rem, env(safe-area-inset-left)); mix-blend-mode: normal; }
   .menu-button { position: relative; z-index: 2; display: block; cursor: pointer; }
@@ -73,6 +74,7 @@ button { color: inherit; }
   .footer-meta { align-items: flex-start; flex-direction: column; gap: .75rem; }
   .footer-socials { justify-content: space-between; width: 100%; gap: .75rem; }
   .footer-socials a { min-height: 2.75rem; display: inline-flex; align-items: center; gap: .3rem; }
+  .footer-socials svg { margin-right: 0; }
   .model-credit p { position: fixed; right: 1rem; bottom: calc(1rem + env(safe-area-inset-bottom)); left: 1rem; width: auto; }
 }
 @media (hover: none), (pointer: coarse) {

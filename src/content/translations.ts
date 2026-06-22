@@ -65,8 +65,8 @@ export const translations: Record<Language, Translation> = {
       socialLabel: 'Social e contatti',
     },
     meta: {
-      title: 'Gabriele Gentile — Digital Experience',
-      description: 'Portfolio di Gabriele Gentile dedicato a identità, direzione creativa ed esperienze digitali immersive.',
+      title: 'Gabriele Gentile — Developer & Digital Designer',
+      description: 'Portfolio ufficiale di Gabriele Gentile, developer e digital designer. Progetti web, esperienze digitali, lavori selezionati e contatti.',
     },
   },
   en: {
@@ -113,8 +113,8 @@ export const translations: Record<Language, Translation> = {
       socialLabel: 'Social and contact links',
     },
     meta: {
-      title: 'Gabriele Gentile — Digital Experience',
-      description: 'Gabriele Gentile’s portfolio for identity, creative direction and immersive digital experiences.',
+      title: 'Gabriele Gentile — Developer & Digital Designer',
+      description: 'Portfolio ufficiale di Gabriele Gentile, developer e digital designer. Progetti web, esperienze digitali, lavori selezionati e contatti.',
     },
   },
 }
