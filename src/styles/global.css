@@ -72,7 +72,7 @@ button { color: inherit; }
   .mobile-language .language-switcher button { min-width: 2.5rem; min-height: 2.5rem; }
   .footer { align-items: stretch; flex-direction: column-reverse; padding: 2rem max(1.25rem, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left)); }
   .footer-meta { align-items: flex-start; flex-direction: column; gap: .75rem; }
-  .footer-socials { justify-content: space-between; width: 100%; gap: .75rem; }
+  .footer-socials { justify-content: flex-start; flex-wrap: wrap; width: 100%; gap: .75rem; }
   .footer-socials a { min-height: 2.75rem; display: inline-flex; align-items: center; gap: .3rem; }
   .footer-socials svg { margin-right: 0; }
   .model-credit p { position: fixed; right: 1rem; bottom: calc(1rem + env(safe-area-inset-bottom)); left: 1rem; width: auto; }

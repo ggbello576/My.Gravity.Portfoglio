@@ -10,7 +10,8 @@ export type Translation = {
     title: string
     danielaSubtitle: string
     danielaDescription: string
-    confidentialOne: string
+    weClubsSubtitle: string
+    weClubsDescription: string
     confidentialTwo: string
     status: string
   }
@@ -39,8 +40,9 @@ export const translations: Record<Language, Translation> = {
       label: '02 / Lavori in corso',
       title: 'In orbita.',
       danielaSubtitle: 'Brand identity / Web experience',
-      danielaDescription: 'Un’identità digitale delicata e contemporanea, progettata per valorizzare composizioni floreali, atmosfera e cura artigianale.',
-      confidentialOne: 'Progetto riservato 01',
+      danielaDescription: 'Un’identità digitale elegante per un negozio di fiori, pensata per raccontare composizioni, atmosfera e cura artigianale attraverso un’esperienza web delicata e contemporanea.',
+      weClubsSubtitle: 'Social app / Nightlife experience',
+      weClubsDescription: 'Un’applicazione dedicata a locali, eventi e vita sociale, progettata per connettere persone, serate e luoghi in un’unica esperienza digitale.',
       confidentialTwo: 'Progetto riservato 02',
       status: 'In sviluppo',
     },
@@ -87,8 +89,9 @@ export const translations: Record<Language, Translation> = {
       label: '02 / Work in progress',
       title: 'In orbit.',
       danielaSubtitle: 'Brand identity / Web experience',
-      danielaDescription: 'A delicate and contemporary digital identity designed to highlight floral compositions, atmosphere and handcrafted care.',
-      confidentialOne: 'Confidential project 01',
+      danielaDescription: 'An elegant digital identity for a flower shop, designed to convey its arrangements, atmosphere and artisanal care through a delicate, contemporary web experience.',
+      weClubsSubtitle: 'Social app / Nightlife experience',
+      weClubsDescription: 'An application dedicated to venues, events and social life, designed to connect people, nights and places in one digital experience.',
       confidentialTwo: 'Confidential project 02',
       status: 'In development',
     },

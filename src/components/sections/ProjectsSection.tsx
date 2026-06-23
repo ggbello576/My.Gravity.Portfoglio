@@ -14,20 +14,22 @@ export function ProjectsSection({ translation }: Props) {
           <article className="project-card project-card-featured">
             <span className="project-number">01</span>
             <div className="project-details">
-              <h3>Daniela Flower Designer</h3>
+              <h3>DANIELA FLOWER DESIGNER</h3>
               <p className="project-category">{translation.danielaSubtitle}</p>
               <p className="project-description">{translation.danielaDescription}</p>
+              <p className="project-status">{translation.status}</p>
             </div>
             <i aria-hidden="true">↗</i>
           </article>
-          <article className="project-card project-card-confidential">
+          <article className="project-card project-card-featured">
             <span className="project-number">02</span>
             <div className="project-details">
-              <h3>Top Secret</h3>
-              <p className="project-category">{translation.confidentialOne}</p>
+              <h3>WE CLUBS</h3>
+              <p className="project-category">{translation.weClubsSubtitle}</p>
+              <p className="project-description">{translation.weClubsDescription}</p>
               <p className="project-status">{translation.status}</p>
             </div>
-            <span className="redacted" aria-hidden="true" />
+            <i aria-hidden="true">↗</i>
           </article>
           <article className="project-card project-card-confidential">
             <span className="project-number">03</span>
