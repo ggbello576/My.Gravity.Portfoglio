@@ -1,4 +1,4 @@
-.experience-layer { position: fixed; z-index: 0; inset: 0; min-height: 100svh; pointer-events: none; contain: strict; }
+.experience-layer { position: fixed; z-index: 0; inset: 0; min-height: 100vh; min-height: 100svh; min-height: 100dvh; pointer-events: none; contain: strict; }
 .experience-layer::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at center, transparent 25%, rgba(0,0,0,.14) 68%, rgba(0,0,0,.6) 120%); }
 .experience-layer canvas { display: block; width: 100% !important; height: 100% !important; }
 .event-horizon { position: fixed; z-index: 2; inset: -10%; pointer-events: none; opacity: 0; background: radial-gradient(circle at center, transparent 0 3%, rgba(0,0,0,.35) 18%, #030303 58%); transform: scale(1.45); }
