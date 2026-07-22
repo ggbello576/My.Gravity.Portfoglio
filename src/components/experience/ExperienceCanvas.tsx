@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { PerformanceMonitor } from '@react-three/drei'
 import { BlackHoleModel } from './BlackHoleModel'
 import { CameraRig } from './CameraRig'
@@ -10,34 +10,26 @@ type Props = { reducedMotion: boolean }
 
 function getDeviceProfile() {
   const compact = window.matchMedia('(max-width: 900px)').matches
-  const phone = window.matchMedia('(max-width: 700px)').matches
   const lowCoreCount = navigator.hardwareConcurrency !== undefined && navigator.hardwareConcurrency <= 4
-  const constrained = compact || lowCoreCount
+  const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
+  const lowMemory = deviceMemory !== undefined && deviceMemory <= 4
+  const constrained = lowCoreCount || lowMemory
+  const maxDpr = Math.min(window.devicePixelRatio || 1, constrained ? 1.35 : 1.5)
+  const initialDpr = Math.min(maxDpr, compact ? (constrained ? 1.25 : 1.35) : maxDpr)
+
   return {
     compact,
     constrained,
-    maxDpr: Math.min(window.devicePixelRatio || 1, phone ? 1 : constrained ? 1.2 : 1.5),
+    initialDpr,
+    maxDpr,
+    minDpr: Math.min(maxDpr, constrained ? 1 : 1.15),
   }
-}
-
-function DemandFrameLoop({ active, enabled }: { active: boolean; enabled: boolean }) {
-  const invalidate = useThree((state) => state.invalidate)
-
-  useEffect(() => {
-    invalidate()
-    if (!active || !enabled) return
-
-    const interval = window.setInterval(invalidate, 1000 / 30)
-    return () => window.clearInterval(interval)
-  }, [active, enabled, invalidate])
-
-  return null
 }
 
 export function ExperienceCanvas({ reducedMotion }: Props) {
   const [profile, setProfile] = useState(getDeviceProfile)
   const profileRef = useRef(profile)
-  const [dpr, setDpr] = useState(profile.maxDpr)
+  const [dpr, setDpr] = useState(profile.initialDpr)
   const [pageVisible, setPageVisible] = useState(() => document.visibilityState !== 'hidden')
 
   useEffect(() => {
@@ -47,10 +39,16 @@ export function ExperienceCanvas({ reducedMotion }: Props) {
       frame = window.requestAnimationFrame(() => {
         const next = getDeviceProfile()
         const current = profileRef.current
-        if (current.compact === next.compact && current.constrained === next.constrained && current.maxDpr === next.maxDpr) return
+        if (
+          current.compact === next.compact
+          && current.constrained === next.constrained
+          && current.initialDpr === next.initialDpr
+          && current.maxDpr === next.maxDpr
+          && current.minDpr === next.minDpr
+        ) return
         profileRef.current = next
         setProfile(next)
-        setDpr(next.maxDpr)
+        setDpr(next.initialDpr)
       })
     }
     const compactQuery = window.matchMedia('(max-width: 900px)')
@@ -74,26 +72,30 @@ export function ExperienceCanvas({ reducedMotion }: Props) {
   return (
     <Canvas
       dpr={dpr}
-      frameloop={reducedMotion || !pageVisible || profile.constrained ? 'demand' : 'always'}
+      frameloop={reducedMotion || !pageVisible ? 'demand' : 'always'}
       camera={{ position: [0, 0.2, 10], fov: 42, near: 0.05, far: 100 }}
-      gl={{ antialias: !profile.constrained, alpha: true, powerPreference: profile.constrained ? 'low-power' : 'high-performance', stencil: false }}
+      gl={{
+        antialias: profile.maxDpr <= 1.1,
+        alpha: false,
+        powerPreference: 'high-performance',
+        stencil: false,
+      }}
       onCreated={({ gl }) => {
         gl.setClearColor('#030303', 1)
       }}
     >
-      {!profile.constrained && (
-        <PerformanceMonitor
-          flipflops={3}
-          onDecline={() => setDpr(1)}
-          onIncline={() => setDpr(profile.maxDpr)}
-        />
-      )}
-      <DemandFrameLoop active={pageVisible && !reducedMotion} enabled={profile.constrained} />
+      <PerformanceMonitor
+        bounds={(refreshRate) => {
+          return refreshRate > 90 ? [55, 90] : [45, 58]
+        }}
+        onDecline={() => setDpr((current) => Math.max(profile.minDpr, Math.round((current - 0.15) * 100) / 100))}
+        onIncline={() => setDpr((current) => Math.min(profile.maxDpr, Math.round((current + 0.1) * 100) / 100))}
+      />
       <Suspense fallback={null}>
         <BlackHoleModel reducedMotion={reducedMotion} mobile={profile.compact} />
       </Suspense>
-      <SpaceParticles reducedMotion={reducedMotion} mobile={profile.constrained} />
-      <SceneLights />
+      <SpaceParticles reducedMotion={reducedMotion} mobile={profile.compact || profile.constrained} />
+      <SceneLights mobile={profile.compact} />
       <CameraRig reducedMotion={reducedMotion} mobile={profile.compact} />
     </Canvas>
   )

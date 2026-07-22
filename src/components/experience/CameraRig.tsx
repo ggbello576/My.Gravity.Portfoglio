@@ -16,17 +16,15 @@ const frames: Keyframe[] = [
   { at: 1, position: v(0, 0, 0.28), target: v(0, 0, -0.25), fov: 70 },
 ]
 
-function sample(progress: number) {
+function sample(progress: number, position: THREE.Vector3, target: THREE.Vector3) {
   let index = frames.findIndex((frame) => frame.at >= progress)
   if (index <= 0) index = 1
   const a = frames[index - 1]
   const b = frames[index]
   const t = THREE.MathUtils.smoothstep((progress - a.at) / (b.at - a.at), 0, 1)
-  return {
-    position: a.position.clone().lerp(b.position, t),
-    target: a.target.clone().lerp(b.target, t),
-    fov: THREE.MathUtils.lerp(a.fov, b.fov, t),
-  }
+  position.lerpVectors(a.position, b.position, t)
+  target.lerpVectors(a.target, b.target, t)
+  return THREE.MathUtils.lerp(a.fov, b.fov, t)
 }
 
 type Props = { reducedMotion: boolean; mobile: boolean }
@@ -34,6 +32,8 @@ type Props = { reducedMotion: boolean; mobile: boolean }
 export function CameraRig({ reducedMotion, mobile }: Props) {
   const { camera, pointer } = useThree()
   const lookTarget = useRef(new THREE.Vector3())
+  const desiredPosition = useRef(new THREE.Vector3())
+  const desiredTarget = useRef(new THREE.Vector3())
 
   useEffect(() => {
     camera.position.copy(frames[0].position)
@@ -41,17 +41,21 @@ export function CameraRig({ reducedMotion, mobile }: Props) {
   }, [camera])
 
   useFrame((_, delta) => {
+    const frameDelta = Math.min(delta, 0.05)
     const progress = reducedMotion ? 0.3 : Math.min(scrollStore.progress, mobile ? 0.955 : 1)
-    const desired = sample(progress)
+    const desiredFov = sample(progress, desiredPosition.current, desiredTarget.current)
     const influence = mobile || reducedMotion ? 0 : 0.1
-    desired.position.x += pointer.x * influence
-    desired.position.y += pointer.y * influence * 0.6
-    camera.position.lerp(desired.position, 1 - Math.exp(-delta * 4))
-    lookTarget.current.lerp(desired.target, 1 - Math.exp(-delta * 5))
+    desiredPosition.current.x += pointer.x * influence
+    desiredPosition.current.y += pointer.y * influence * 0.6
+    camera.position.lerp(desiredPosition.current, 1 - Math.exp(-frameDelta * 4))
+    lookTarget.current.lerp(desiredTarget.current, 1 - Math.exp(-frameDelta * 5))
     camera.lookAt(lookTarget.current)
     if (camera instanceof THREE.PerspectiveCamera) {
-      camera.fov = THREE.MathUtils.damp(camera.fov, desired.fov, 4, delta)
-      camera.updateProjectionMatrix()
+      const nextFov = THREE.MathUtils.damp(camera.fov, desiredFov, 4, frameDelta)
+      if (Math.abs(nextFov - camera.fov) > 0.001) {
+        camera.fov = nextFov
+        camera.updateProjectionMatrix()
+      }
     }
   })
 

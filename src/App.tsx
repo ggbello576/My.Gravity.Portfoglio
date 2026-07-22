@@ -61,19 +61,26 @@ function App() {
     if (!ready) return
 
     document.body.classList.remove('is-loading')
-    const lenis = new Lenis({
+    const nativeTouchScroll = window.matchMedia('(hover: none), (pointer: coarse)').matches
+    const lenis = nativeTouchScroll ? null : new Lenis({
       duration: reducedMotion ? 0 : 1.15,
       smoothWheel: !reducedMotion,
       wheelMultiplier: 0.85,
     })
     lenisRef.current = lenis
-    lenis.scrollTo(0, { immediate: true })
+    let tick: ((time: number) => void) | null = null
 
-    lenis.on('scroll', ScrollTrigger.update)
-    const tick = (time: number) => lenis.raf(time * 1000)
-    gsap.ticker.add(tick)
-    gsap.ticker.lagSmoothing(0)
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true })
+      lenis.on('scroll', ScrollTrigger.update)
+      tick = (time: number) => lenis.raf(time * 1000)
+      gsap.ticker.add(tick)
+      gsap.ticker.lagSmoothing(0)
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }
 
+    const progressElement = document.querySelector<HTMLElement>('.scroll-progress span')
     const context = gsap.context(() => {
       ScrollTrigger.create({
         trigger: document.documentElement,
@@ -81,11 +88,11 @@ function App() {
         end: () => ScrollTrigger.maxScroll(window),
         onUpdate: ({ progress }) => {
           scrollStore.progress = progress
-          document.documentElement.style.setProperty('--page-progress', progress.toFixed(4))
+          if (progressElement) progressElement.style.transform = `scaleY(${progress.toFixed(4)})`
         },
       })
 
-      if (!reducedMotion) {
+      if (!reducedMotion && !nativeTouchScroll) {
         gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((element) => {
           gsap.fromTo(
             element,
@@ -143,7 +150,12 @@ function App() {
     const scrollToCurrentHash = (immediate = false) => {
       if (!window.location.hash) return
       const scrollTop = getSectionScrollTop(window.location.hash)
-      if (scrollTop !== null) lenis.scrollTo(scrollTop, immediate || reducedMotion ? { immediate: true } : { duration: 1.15 })
+      if (scrollTop === null) return
+      if (lenis) {
+        lenis.scrollTo(scrollTop, immediate || reducedMotion ? { immediate: true } : { duration: 1.15 })
+      } else {
+        window.scrollTo({ top: scrollTop, behavior: immediate || reducedMotion ? 'auto' : 'smooth' })
+      }
     }
     const refresh = () => {
       if (!active) return
@@ -163,12 +175,13 @@ function App() {
     return () => {
       active = false
       context.revert()
-      lenis.destroy()
+      lenis?.destroy()
       lenisRef.current = null
-      gsap.ticker.remove(tick)
+      if (tick) gsap.ticker.remove(tick)
       window.removeEventListener('load', refresh)
       window.removeEventListener('hashchange', handleHashChange)
       scrollStore.progress = 0
+      if (progressElement) progressElement.style.transform = 'scaleY(0)'
     }
   }, [ready, reducedMotion])
 
