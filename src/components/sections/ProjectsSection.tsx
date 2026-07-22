@@ -11,16 +11,22 @@ export function ProjectsSection({ translation }: Props) {
           <h2 id="projects-title">{translation.title}</h2>
         </div>
         <div className="project-list">
-          <article className="project-card project-card-featured">
+          <a
+            className="project-card project-card-featured project-card-link"
+            href="https://arviontstudio.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Visita il sito di Arviont Studio"
+          >
             <span className="project-number">01</span>
             <div className="project-details">
-              <h3>DANIELA FLOWER DESIGNER</h3>
-              <p className="project-category">{translation.danielaSubtitle}</p>
-              <p className="project-description">{translation.danielaDescription}</p>
+              <h3>ARVIONT STUDIO</h3>
+              <p className="project-category">{translation.arviontSubtitle}</p>
+              <p className="project-description">{translation.arviontDescription}</p>
               <p className="project-status">{translation.status}</p>
             </div>
             <i aria-hidden="true">↗</i>
-          </article>
+          </a>
           <article className="project-card project-card-featured">
             <span className="project-number">02</span>
             <div className="project-details">

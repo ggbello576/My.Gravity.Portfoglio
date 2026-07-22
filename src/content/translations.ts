@@ -8,8 +8,8 @@ export type Translation = {
   work: {
     label: string
     title: string
-    danielaSubtitle: string
-    danielaDescription: string
+    arviontSubtitle: string
+    arviontDescription: string
     weClubsSubtitle: string
     weClubsDescription: string
     confidentialTwo: string
@@ -39,8 +39,8 @@ export const translations: Record<Language, Translation> = {
     work: {
       label: '02 / Lavori in corso',
       title: 'In orbita.',
-      danielaSubtitle: 'Brand identity / Web experience',
-      danielaDescription: 'Un’identità digitale elegante per un negozio di fiori, pensata per raccontare composizioni, atmosfera e cura artigianale attraverso un’esperienza web delicata e contemporanea.',
+      arviontSubtitle: 'Co-founder / Developer',
+      arviontDescription: 'Co-founder e developer di Arviont Studio, uno studio digitale dedicato alla creazione di identità, siti web ed esperienze digitali.',
       weClubsSubtitle: 'Social app / Nightlife experience',
       weClubsDescription: 'Un’applicazione dedicata a locali, eventi e vita sociale, progettata per connettere persone, serate e luoghi in un’unica esperienza digitale.',
       confidentialTwo: 'Progetto riservato 02',
@@ -88,8 +88,8 @@ export const translations: Record<Language, Translation> = {
     work: {
       label: '02 / Work in progress',
       title: 'In orbit.',
-      danielaSubtitle: 'Brand identity / Web experience',
-      danielaDescription: 'An elegant digital identity for a flower shop, designed to convey its arrangements, atmosphere and artisanal care through a delicate, contemporary web experience.',
+      arviontSubtitle: 'Co-founder / Developer',
+      arviontDescription: 'Co-founder and developer at Arviont Studio, a digital studio focused on creating identities, websites and digital experiences.',
       weClubsSubtitle: 'Social app / Nightlife experience',
       weClubsDescription: 'An application dedicated to venues, events and social life, designed to connect people, nights and places in one digital experience.',
       confidentialTwo: 'Confidential project 02',
