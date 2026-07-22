@@ -15,15 +15,14 @@ export function ProjectsSection({ translation }: Props) {
             className="project-card project-card-featured project-card-link"
             href="https://arviontstudio.com"
             target="_blank"
-            rel="noreferrer"
-            aria-label="Visita il sito di Arviont Studio"
+            rel="noopener noreferrer"
+            aria-label={translation.arviontLinkLabel}
           >
             <span className="project-number">01</span>
             <div className="project-details">
               <h3>ARVIONT STUDIO</h3>
               <p className="project-category">{translation.arviontSubtitle}</p>
               <p className="project-description">{translation.arviontDescription}</p>
-              <p className="project-status">{translation.status}</p>
             </div>
             <i aria-hidden="true">↗</i>
           </a>

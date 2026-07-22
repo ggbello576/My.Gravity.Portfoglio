@@ -11,7 +11,7 @@ export function ServicesSection({ translation }: Props) {
           <h2 id="services-title">{translation.title}</h2>
         </div>
         <ol className="service-list">
-          {translation.items.map((service, index) => <li className="service-row" key={service}><span>{String(index + 1).padStart(2, '0')}</span><h3>{service}</h3></li>)}
+          {translation.items.map((service, index) => <li className="service-row" key={service}><span>{String(index + 1).padStart(2, '0')} —</span><h3>{service}</h3></li>)}
         </ol>
       </div>
     </section>

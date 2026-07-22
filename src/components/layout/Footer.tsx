@@ -10,9 +10,9 @@ export function Footer({ translation }: Props) {
         <details className="model-credit">
           <summary>{translation.credits}</summary>
           <p>
-            <a href="https://sketchfab.com/3d-models/blackhole-74cbeaeae2174a218fe9455d77902b5c" target="_blank" rel="noreferrer">{translation.model}</a>{' '}
-            {translation.by} <a href="https://sketchfab.com/rubykamen" target="_blank" rel="noreferrer">rubykamen</a> {translation.via}{' '}
-            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">{translation.license}</a>.
+            <a href="https://sketchfab.com/3d-models/blackhole-74cbeaeae2174a218fe9455d77902b5c" target="_blank" rel="noopener noreferrer">{translation.model}</a>{' '}
+            {translation.by} <a href="https://sketchfab.com/rubykamen" target="_blank" rel="noopener noreferrer">rubykamen</a> {translation.via}{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">{translation.license}</a>.
           </p>
         </details>
       </div>

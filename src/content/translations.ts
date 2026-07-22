@@ -10,6 +10,7 @@ export type Translation = {
     title: string
     arviontSubtitle: string
     arviontDescription: string
+    arviontLinkLabel: string
     weClubsSubtitle: string
     weClubsDescription: string
     confidentialTwo: string
@@ -24,23 +25,24 @@ export type Translation = {
 export const translations: Record<Language, Translation> = {
   it: {
     loader: 'INIZIALIZZAZIONE GRAVITÀ',
-    nav: { about: 'Chi sono', work: 'Lavori', services: 'Servizi', contact: 'Contatti', menu: 'Menu', close: 'Chiudi', language: 'Seleziona lingua' },
+    nav: { about: 'Cosa faccio', work: 'Lavori', services: 'Servizi', contact: 'Contatti', menu: 'Menu', close: 'Chiudi', language: 'Seleziona lingua' },
     hero: {
       eyebrow: 'GABRIELE GENTILE / DIGITAL EXPERIENCE',
       title: 'Le idee hanno gravità.',
-      copy: 'Creo identità ed esperienze digitali capaci di attirare attenzione, raccontare valore e lasciare un segno.',
+      copy: 'Sviluppo siti web, applicazioni e software gestionali, trasformando esigenze concrete in soluzioni semplici e funzionali.',
       scroll: 'Scorri per entrare',
     },
     about: {
-      label: '01 / Chi sono',
-      title: 'Creo esperienze digitali che attirano le persone.',
-      body: 'Unisco direzione creativa, identità visiva e interazione per trasformare un’idea in un’esperienza digitale riconoscibile, coinvolgente e coerente.',
+      label: '01 / Cosa faccio',
+      title: 'Porto le idee\ndall’orbita\nalla realtà.',
+      body: 'Sono uno studente e developer con voglia di imparare, sperimentare e crescere attraverso progetti concreti in diversi ambiti informatici.',
     },
     work: {
       label: '02 / Lavori in corso',
       title: 'In orbita.',
       arviontSubtitle: 'Co-founder / Developer',
       arviontDescription: 'Co-founder e developer di Arviont Studio, uno studio digitale dedicato alla creazione di identità, siti web ed esperienze digitali.',
+      arviontLinkLabel: 'Visita il sito di Arviont Studio',
       weClubsSubtitle: 'Social app / Nightlife experience',
       weClubsDescription: 'Un’applicazione dedicata a locali, eventi e vita sociale, progettata per connettere persone, serate e luoghi in un’unica esperienza digitale.',
       confidentialTwo: 'Progetto riservato 02',
@@ -48,8 +50,8 @@ export const translations: Record<Language, Translation> = {
     },
     services: {
       label: '03 / Competenze',
-      title: 'Ciò che porto a fuoco.',
-      items: ['Direzione creativa', 'Esperienze web', 'Identità di brand', 'Prodotti digitali'],
+      title: 'Idee che\ndiventano\ncodice.',
+      items: ['Siti e applicazioni web', 'Software gestionali', 'Backend e database', 'Soluzioni su misura'],
     },
     contact: {
       label: '04 / Contatti',
@@ -73,23 +75,24 @@ export const translations: Record<Language, Translation> = {
   },
   en: {
     loader: 'INITIALIZING GRAVITY',
-    nav: { about: 'About', work: 'Work', services: 'Services', contact: 'Contact', menu: 'Menu', close: 'Close', language: 'Select language' },
+    nav: { about: 'What I do', work: 'Work', services: 'Services', contact: 'Contact', menu: 'Menu', close: 'Close', language: 'Select language' },
     hero: {
       eyebrow: 'GABRIELE GENTILE / DIGITAL EXPERIENCE',
       title: 'Ideas have gravity.',
-      copy: 'I create digital identities and experiences designed to attract attention, communicate value and leave a lasting impression.',
+      copy: 'I develop websites, applications and management software, turning real needs into simple, functional solutions.',
       scroll: 'Scroll to enter',
     },
     about: {
-      label: '01 / About',
-      title: 'I create digital experiences that pull people in.',
-      body: 'I combine creative direction, visual identity and interaction to transform an idea into a distinctive, engaging and coherent digital experience.',
+      label: '01 / What I do',
+      title: 'I bring ideas\nfrom orbit\ninto reality.',
+      body: 'I am a student and developer eager to learn, experiment and grow through real-world projects across different areas of computer science.',
     },
     work: {
       label: '02 / Work in progress',
       title: 'In orbit.',
       arviontSubtitle: 'Co-founder / Developer',
       arviontDescription: 'Co-founder and developer at Arviont Studio, a digital studio focused on creating identities, websites and digital experiences.',
+      arviontLinkLabel: 'Visit the Arviont Studio website',
       weClubsSubtitle: 'Social app / Nightlife experience',
       weClubsDescription: 'An application dedicated to venues, events and social life, designed to connect people, nights and places in one digital experience.',
       confidentialTwo: 'Confidential project 02',
@@ -97,8 +100,8 @@ export const translations: Record<Language, Translation> = {
     },
     services: {
       label: '03 / Capabilities',
-      title: 'What I bring into focus.',
-      items: ['Creative Direction', 'Web Experience', 'Brand Identity', 'Digital Products'],
+      title: 'Ideas that\nbecome\ncode.',
+      items: ['Websites and web applications', 'Management software', 'Backend and databases', 'Tailored solutions'],
     },
     contact: {
       label: '04 / Contact',
@@ -117,7 +120,7 @@ export const translations: Record<Language, Translation> = {
     },
     meta: {
       title: 'Gabriele Gentile — Developer & Digital Designer',
-      description: 'Portfolio ufficiale di Gabriele Gentile, developer e digital designer. Progetti web, esperienze digitali, lavori selezionati e contatti.',
+      description: 'Official portfolio of Gabriele Gentile, developer and digital designer. Websites, applications, software and selected projects.',
     },
   },
 }

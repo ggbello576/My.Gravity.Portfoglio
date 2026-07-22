@@ -1,9 +1,20 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+const securityHeaders = {
+  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Cross-Origin-Resource-Policy': 'same-origin',
+  'Permissions-Policy': 'camera=(), geolocation=(), microphone=(), payment=(), usb=()',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: { headers: securityHeaders },
+  preview: { headers: securityHeaders },
   build: {
     rolldownOptions: {
       output: {

@@ -14,7 +14,7 @@ export function SpaceParticles({ reducedMotion, mobile }: Props) {
   const points = useRef<THREE.Points>(null)
   const material = useRef<THREE.PointsMaterial>(null)
   const positions = useMemo(() => {
-    const count = mobile ? 520 : 1200
+    const count = mobile ? 420 : 1200
     const values = new Float32Array(count * 3)
     for (let i = 0; i < count; i += 1) {
       const radius = 7 + pseudoRandom(i * 3 + 1) * 25

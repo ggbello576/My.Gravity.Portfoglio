@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { translations, type Language } from '../content/translations'
 
-const STORAGE_KEY = 'gabriele-gentile-language'
+const STORAGE_KEY = 'gabriele-gentile-language-v2'
 
 function getInitialLanguage(): Language {
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
-    return saved === 'en' || saved === 'it' ? saved : 'it'
+    return saved === 'en' || saved === 'it' ? saved : 'en'
   } catch {
-    return 'it'
+    return 'en'
   }
 }
 

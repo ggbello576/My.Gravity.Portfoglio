@@ -65,7 +65,7 @@ img, video { display: block; max-width: 100%; height: auto; }
   .menu-button { position: relative; z-index: 2; min-width: 2.75rem; min-height: 2.75rem; display: block; padding: .5rem; cursor: pointer; }
   .nav-actions { display: contents; }
   .desktop-language { display: none; }
-  .navigation nav { position: fixed; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: max(5rem, env(safe-area-inset-top)) max(2rem, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(2rem, env(safe-area-inset-left)); overflow-y: auto; overscroll-behavior: contain; background: rgba(3,3,3,.98); opacity: 0; visibility: hidden; transform: translateY(-12px); transition: opacity .35s, visibility .35s, transform .35s; }
+  .navigation nav { position: fixed; inset: 0; min-height: 100svh; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; padding: max(5rem, env(safe-area-inset-top)) max(2rem, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(2rem, env(safe-area-inset-left)); overflow-y: auto; overscroll-behavior: none; background: rgba(3,3,3,.98); opacity: 0; visibility: hidden; transform: translateY(-12px); transition: opacity .35s, visibility .35s, transform .35s; }
   .navigation nav.is-open { opacity: 1; visibility: visible; transform: none; }
   .navigation nav a { font-size: clamp(2rem, 12vw, 4rem); font-weight: 300; letter-spacing: -.03em; }
   .mobile-language { display: block; margin-top: 2rem; }

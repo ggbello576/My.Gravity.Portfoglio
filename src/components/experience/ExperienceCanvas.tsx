@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
 import { PerformanceMonitor } from '@react-three/drei'
 import { BlackHoleModel } from './BlackHoleModel'
 import { CameraRig } from './CameraRig'
@@ -10,13 +10,28 @@ type Props = { reducedMotion: boolean }
 
 function getDeviceProfile() {
   const compact = window.matchMedia('(max-width: 900px)').matches
+  const phone = window.matchMedia('(max-width: 700px)').matches
   const lowCoreCount = navigator.hardwareConcurrency !== undefined && navigator.hardwareConcurrency <= 4
   const constrained = compact || lowCoreCount
   return {
     compact,
     constrained,
-    maxDpr: Math.min(window.devicePixelRatio || 1, constrained ? 1.25 : 1.5),
+    maxDpr: Math.min(window.devicePixelRatio || 1, phone ? 1 : constrained ? 1.2 : 1.5),
   }
+}
+
+function DemandFrameLoop({ active, enabled }: { active: boolean; enabled: boolean }) {
+  const invalidate = useThree((state) => state.invalidate)
+
+  useEffect(() => {
+    invalidate()
+    if (!active || !enabled) return
+
+    const interval = window.setInterval(invalidate, 1000 / 30)
+    return () => window.clearInterval(interval)
+  }, [active, enabled, invalidate])
+
+  return null
 }
 
 export function ExperienceCanvas({ reducedMotion }: Props) {
@@ -59,18 +74,21 @@ export function ExperienceCanvas({ reducedMotion }: Props) {
   return (
     <Canvas
       dpr={dpr}
-      frameloop={reducedMotion || !pageVisible ? 'demand' : 'always'}
+      frameloop={reducedMotion || !pageVisible || profile.constrained ? 'demand' : 'always'}
       camera={{ position: [0, 0.2, 10], fov: 42, near: 0.05, far: 100 }}
-      gl={{ antialias: !profile.constrained, alpha: true, powerPreference: 'high-performance', stencil: false }}
+      gl={{ antialias: !profile.constrained, alpha: true, powerPreference: profile.constrained ? 'low-power' : 'high-performance', stencil: false }}
       onCreated={({ gl }) => {
         gl.setClearColor('#030303', 1)
       }}
     >
-      <PerformanceMonitor
-        flipflops={3}
-        onDecline={() => setDpr(1)}
-        onIncline={() => setDpr(profile.maxDpr)}
-      />
+      {!profile.constrained && (
+        <PerformanceMonitor
+          flipflops={3}
+          onDecline={() => setDpr(1)}
+          onIncline={() => setDpr(profile.maxDpr)}
+        />
+      )}
+      <DemandFrameLoop active={pageVisible && !reducedMotion} enabled={profile.constrained} />
       <Suspense fallback={null}>
         <BlackHoleModel reducedMotion={reducedMotion} mobile={profile.compact} />
       </Suspense>

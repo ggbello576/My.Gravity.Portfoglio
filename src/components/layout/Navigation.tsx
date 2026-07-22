@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import type { Language, Translation } from '../../content/translations'
 
 type Props = {
   language: Language
   onLanguageChange: (language: Language) => void
+  onNavigate: (hash: string) => void
   translation: Translation['nav']
 }
 
-export function Navigation({ language, onLanguageChange, translation }: Props) {
+export function Navigation({ language, onLanguageChange, onNavigate, translation }: Props) {
   const [open, setOpen] = useState(false)
   const menuButton = useRef<HTMLButtonElement>(null)
   const menu = useRef<HTMLElement>(null)
@@ -18,11 +19,17 @@ export function Navigation({ language, onLanguageChange, translation }: Props) {
     [translation.contact, '#contact'],
   ]
 
+  const handleNavigation = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault()
+    setOpen(false)
+    window.requestAnimationFrame(() => onNavigate(href))
+  }
+
   const languageSwitcher = (
     <div className="language-switcher" role="group" aria-label={translation.language}>
-      <button type="button" className={language === 'it' ? 'is-active' : ''} aria-pressed={language === 'it'} onClick={() => onLanguageChange('it')}>IT</button>
-      <span aria-hidden="true">/</span>
       <button type="button" className={language === 'en' ? 'is-active' : ''} aria-pressed={language === 'en'} onClick={() => onLanguageChange('en')}>EN</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" className={language === 'it' ? 'is-active' : ''} aria-pressed={language === 'it'} onClick={() => onLanguageChange('it')}>IT</button>
     </div>
   )
 
@@ -66,13 +73,13 @@ export function Navigation({ language, onLanguageChange, translation }: Props) {
 
   return (
     <header className="navigation">
-      <a className="brand" href="#home">Gabriele Gentile</a>
+      <a className="brand" href="#home" onClick={(event) => handleNavigation(event, '#home')}>Gabriele Gentile</a>
       <button ref={menuButton} className="menu-button" type="button" aria-expanded={open} aria-controls="main-menu" onClick={() => setOpen((value) => !value)}>
         <span>{open ? translation.close : translation.menu}</span>
       </button>
       <div className="nav-actions">
         <nav ref={menu} id="main-menu" aria-label="Primary navigation" className={open ? 'is-open' : ''}>
-          {links.map(([label, href]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>)}
+          {links.map(([label, href]) => <a key={href} href={href} onClick={(event) => handleNavigation(event, href)}>{label}</a>)}
           <div className="mobile-language">{languageSwitcher}</div>
         </nav>
         <div className="desktop-language">{languageSwitcher}</div>
