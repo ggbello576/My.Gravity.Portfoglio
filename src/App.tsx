@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
@@ -23,6 +23,10 @@ import './styles/sections.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const useClientLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
+
+type Props = { prerendered?: boolean }
+
 function getSectionScrollTop(hash: string) {
   const section = document.querySelector<HTMLElement>(hash)
   if (!section) return null
@@ -36,10 +40,10 @@ function getSectionScrollTop(hash: string) {
   return Math.min(sectionTop + centeredOffset, maxScroll)
 }
 
-function App() {
+function App({ prerendered = false }: Props) {
   const reducedMotion = useReducedMotion()
   const webGLSupported = useWebGLSupport()
-  const [ready, setReady] = useState(!webGLSupported)
+  const [ready, setReady] = useState(prerendered ? false : !webGLSupported)
   const { language, setLanguage, translation } = useLanguage()
   const lenisRef = useRef<Lenis | null>(null)
 
@@ -57,7 +61,7 @@ function App() {
     }
   }
 
-  useLayoutEffect(() => {
+  useClientLayoutEffect(() => {
     if (!ready) return
 
     document.body.classList.remove('is-loading')
@@ -189,7 +193,7 @@ function App() {
     <>
       {!ready && <Loader label={translation.loader} onComplete={() => setReady(true)} />}
       <div className="experience-layer" aria-hidden="true">
-        {webGLSupported ? <ExperienceCanvas reducedMotion={reducedMotion} /> : <SceneFallback />}
+        {!prerendered && webGLSupported ? <ExperienceCanvas reducedMotion={reducedMotion} /> : <SceneFallback />}
       </div>
       <div className="event-horizon" aria-hidden="true" />
       <Navigation language={language} onLanguageChange={setLanguage} onNavigate={navigateToSection} translation={translation.nav} />

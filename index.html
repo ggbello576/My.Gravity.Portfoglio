@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#000000" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="description" content="Official portfolio of Gabriele Gentile, developer and digital designer. Websites, applications, software and selected projects." />
+    <meta name="description" content="Official portfolio of Gabriele Gentile, developer and digital designer. Websites, applications, software and selected digital projects." />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://www.gabrielegentile.dev/" />
     <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
@@ -16,36 +16,57 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
     <link rel="manifest" href="/site.webmanifest?v=2" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="it_IT" />
     <meta property="og:site_name" content="Gabriele Gentile" />
     <meta property="og:title" content="Gabriele Gentile — Developer &amp; Digital Designer" />
-    <meta property="og:description" content="Official portfolio of Gabriele Gentile, developer and digital designer." />
+    <meta property="og:description" content="Official portfolio of Gabriele Gentile, developer and digital designer. Websites, applications, software and selected digital projects." />
     <meta property="og:url" content="https://www.gabrielegentile.dev/" />
     <meta property="og:image" content="https://www.gabrielegentile.dev/og-image.jpg" />
     <meta property="og:image:secure_url" content="https://www.gabrielegentile.dev/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Gabriele Gentile — Developer" />
+    <meta property="og:image:alt" content="Gabriele Gentile Developer logo on a black background" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Gabriele Gentile — Developer &amp; Digital Designer" />
-    <meta name="twitter:description" content="Official portfolio of Gabriele Gentile, developer and digital designer." />
+    <meta name="twitter:description" content="Official portfolio of Gabriele Gentile, developer and digital designer. Websites, applications, software and selected digital projects." />
     <meta name="twitter:image" content="https://www.gabrielegentile.dev/og-image.jpg" />
-    <meta name="twitter:image:alt" content="Gabriele Gentile — Developer" />
+    <meta name="twitter:image:alt" content="Gabriele Gentile Developer logo on a black background" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "ProfilePage",
+            "@id": "https://www.gabrielegentile.dev/#profile",
+            "url": "https://www.gabrielegentile.dev/",
+            "name": "Gabriele Gentile — Developer & Digital Designer",
+            "isPartOf": {
+              "@id": "https://www.gabrielegentile.dev/#website"
+            },
+            "mainEntity": {
+              "@id": "https://www.gabrielegentile.dev/#person"
+            },
+            "inLanguage": ["en-US", "it-IT"]
+          },
+          {
             "@type": "Person",
             "@id": "https://www.gabrielegentile.dev/#person",
             "name": "Gabriele Gentile",
             "url": "https://www.gabrielegentile.dev/",
             "jobTitle": "Developer & Digital Designer",
+            "mainEntityOfPage": {
+              "@id": "https://www.gabrielegentile.dev/#profile"
+            },
+            "affiliation": {
+              "@type": "Organization",
+              "name": "Arviont Studio",
+              "url": "https://arviontstudio.com/"
+            },
             "sameAs": [
               "https://www.instagram.com/gabriele_gentileeee/",
               "https://www.linkedin.com/in/gabriele-gentile-16196239a/",
@@ -57,6 +78,7 @@
             "@id": "https://www.gabrielegentile.dev/#website",
             "url": "https://www.gabrielegentile.dev/",
             "name": "Gabriele Gentile",
+            "alternateName": "Gabriele Gentile Portfolio",
             "publisher": {
               "@id": "https://www.gabrielegentile.dev/#person"
             },
@@ -67,7 +89,8 @@
     </script>
     <title>Gabriele Gentile — Developer &amp; Digital Designer</title>
   </head>
-  <body>
+  <body class="is-loading">
+    <noscript><style>body.is-loading { overflow: auto; } .loader { display: none; }</style></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

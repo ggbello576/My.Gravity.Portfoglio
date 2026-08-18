@@ -12,6 +12,10 @@ function getInitialLanguage(): Language {
   }
 }
 
+function setMetaContent(selector: string, content: string) {
+  document.querySelector<HTMLMetaElement>(selector)?.setAttribute('content', content)
+}
+
 export function useLanguage() {
   const [language, setLanguage] = useState<Language>(getInitialLanguage)
   const translation = translations[language]
@@ -19,7 +23,15 @@ export function useLanguage() {
   useEffect(() => {
     document.documentElement.lang = language
     document.title = translation.meta.title
-    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content', translation.meta.description)
+    setMetaContent('meta[name="description"]', translation.meta.description)
+    setMetaContent('meta[property="og:locale"]', translation.meta.locale)
+    setMetaContent('meta[property="og:locale:alternate"]', translation.meta.alternateLocale)
+    setMetaContent('meta[property="og:title"]', translation.meta.title)
+    setMetaContent('meta[property="og:description"]', translation.meta.description)
+    setMetaContent('meta[property="og:image:alt"]', translation.meta.imageAlt)
+    setMetaContent('meta[name="twitter:title"]', translation.meta.title)
+    setMetaContent('meta[name="twitter:description"]', translation.meta.description)
+    setMetaContent('meta[name="twitter:image:alt"]', translation.meta.imageAlt)
     try {
       localStorage.setItem(STORAGE_KEY, language)
     } catch {

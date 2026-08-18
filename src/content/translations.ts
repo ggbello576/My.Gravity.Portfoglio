@@ -2,7 +2,7 @@ export type Language = 'it' | 'en'
 
 export type Translation = {
   loader: string
-  nav: { about: string; work: string; services: string; contact: string; menu: string; close: string; language: string }
+  nav: { about: string; work: string; services: string; contact: string; menu: string; close: string; language: string; primary: string }
   hero: { eyebrow: string; title: string; copy: string; scroll: string }
   about: { label: string; title: string; body: string }
   work: {
@@ -18,16 +18,29 @@ export type Translation = {
   }
   services: { label: string; title: string; items: string[] }
   contact: { label: string; title: string; copy: string; button: string }
-  footer: { copyright: string; credits: string; model: string; by: string; via: string; license: string; socialLabel: string }
-  meta: { title: string; description: string }
+  footer: {
+    copyright: string
+    credits: string
+    model: string
+    by: string
+    via: string
+    license: string
+    socialLabel: string
+    instagramLabel: string
+    curriculumLabel: string
+    linkedinLabel: string
+    githubLabel: string
+    emailLabel: string
+  }
+  meta: { title: string; description: string; locale: string; alternateLocale: string; imageAlt: string }
 }
 
 export const translations: Record<Language, Translation> = {
   it: {
     loader: 'INIZIALIZZAZIONE GRAVITÀ',
-    nav: { about: 'Cosa faccio', work: 'Lavori', services: 'Servizi', contact: 'Contatti', menu: 'Menu', close: 'Chiudi', language: 'Seleziona lingua' },
+    nav: { about: 'Cosa faccio', work: 'Lavori', services: 'Servizi', contact: 'Contatti', menu: 'Menu', close: 'Chiudi', language: 'Seleziona lingua', primary: 'Navigazione principale' },
     hero: {
-      eyebrow: 'GABRIELE GENTILE / DIGITAL EXPERIENCE',
+      eyebrow: 'GABRIELE GENTILE — DEVELOPER & DIGITAL DESIGNER',
       title: 'Le idee hanno gravità.',
       copy: 'Sviluppo siti web, applicazioni e software gestionali, trasformando esigenze concrete in soluzioni semplici e funzionali.',
       scroll: 'Scorri per entrare',
@@ -35,7 +48,7 @@ export const translations: Record<Language, Translation> = {
     about: {
       label: '01 / Cosa faccio',
       title: 'Porto le idee\ndall’orbita\nalla realtà.',
-      body: 'Sono uno studente e developer con voglia di imparare, sperimentare e crescere attraverso progetti concreti in diversi ambiti informatici.',
+      body: 'Sono Gabriele Gentile, developer e digital designer. Studio informatica e trasformo esigenze concrete in siti web, applicazioni, software gestionali ed esperienze digitali semplici e funzionali, continuando a crescere attraverso progetti reali.',
     },
     work: {
       label: '02 / Lavori in corso',
@@ -67,17 +80,25 @@ export const translations: Record<Language, Translation> = {
       via: 'tramite Sketchfab, utilizzato secondo la relativa',
       license: 'licenza Creative Commons con attribuzione',
       socialLabel: 'Social e contatti',
+      instagramLabel: 'Profilo Instagram ufficiale di Gabriele Gentile — si apre in una nuova scheda',
+      curriculumLabel: 'Apri il curriculum di Gabriele Gentile in una nuova scheda',
+      linkedinLabel: 'Profilo LinkedIn ufficiale di Gabriele Gentile — si apre in una nuova scheda',
+      githubLabel: 'Profilo GitHub ufficiale di Gabriele Gentile — si apre in una nuova scheda',
+      emailLabel: 'Invia un’email a Gabriele Gentile',
     },
     meta: {
       title: 'Gabriele Gentile — Developer & Digital Designer',
-      description: 'Portfolio ufficiale di Gabriele Gentile, developer e digital designer. Progetti web, esperienze digitali, lavori selezionati e contatti.',
+      description: 'Portfolio ufficiale di Gabriele Gentile, developer e digital designer. Siti web, applicazioni, software e progetti digitali selezionati.',
+      locale: 'it_IT',
+      alternateLocale: 'en_US',
+      imageAlt: 'Logo Gabriele Gentile Developer su sfondo nero',
     },
   },
   en: {
     loader: 'INITIALIZING GRAVITY',
-    nav: { about: 'What I do', work: 'Work', services: 'Services', contact: 'Contact', menu: 'Menu', close: 'Close', language: 'Select language' },
+    nav: { about: 'What I do', work: 'Work', services: 'Services', contact: 'Contact', menu: 'Menu', close: 'Close', language: 'Select language', primary: 'Primary navigation' },
     hero: {
-      eyebrow: 'GABRIELE GENTILE / DIGITAL EXPERIENCE',
+      eyebrow: 'GABRIELE GENTILE — DEVELOPER & DIGITAL DESIGNER',
       title: 'Ideas have gravity.',
       copy: 'I develop websites, applications and management software, turning real needs into simple, functional solutions.',
       scroll: 'Scroll to enter',
@@ -85,7 +106,7 @@ export const translations: Record<Language, Translation> = {
     about: {
       label: '01 / What I do',
       title: 'I bring ideas\nfrom orbit\ninto reality.',
-      body: 'I am a student and developer eager to learn, experiment and grow through real-world projects across different areas of computer science.',
+      body: 'I’m Gabriele Gentile, a developer and digital designer. I study computer science and turn real needs into websites, applications, management software and clear, functional digital experiences while continuing to grow through real projects.',
     },
     work: {
       label: '02 / Work in progress',
@@ -117,10 +138,18 @@ export const translations: Record<Language, Translation> = {
       via: 'via Sketchfab, used under its applicable',
       license: 'Creative Commons attribution license',
       socialLabel: 'Social and contact links',
+      instagramLabel: 'Gabriele Gentile’s official Instagram profile — opens in a new tab',
+      curriculumLabel: 'Open Gabriele Gentile’s résumé in a new tab',
+      linkedinLabel: 'Gabriele Gentile’s official LinkedIn profile — opens in a new tab',
+      githubLabel: 'Gabriele Gentile’s official GitHub profile — opens in a new tab',
+      emailLabel: 'Send an email to Gabriele Gentile',
     },
     meta: {
       title: 'Gabriele Gentile — Developer & Digital Designer',
-      description: 'Official portfolio of Gabriele Gentile, developer and digital designer. Websites, applications, software and selected projects.',
+      description: 'Official portfolio of Gabriele Gentile, developer and digital designer. Websites, applications, software and selected digital projects.',
+      locale: 'en_US',
+      alternateLocale: 'it_IT',
+      imageAlt: 'Gabriele Gentile Developer logo on a black background',
     },
   },
 }

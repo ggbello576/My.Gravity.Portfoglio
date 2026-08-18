@@ -14,8 +14,11 @@ window.addEventListener('pageshow', resetScroll, { once: true })
 
 document.body.classList.add('is-loading')
 
-createRoot(document.getElementById('root')!).render(
+const root = document.getElementById('root')!
+const application = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+
+createRoot(root).render(application)

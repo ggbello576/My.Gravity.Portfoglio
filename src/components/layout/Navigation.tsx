@@ -78,7 +78,7 @@ export function Navigation({ language, onLanguageChange, onNavigate, translation
         <span>{open ? translation.close : translation.menu}</span>
       </button>
       <div className="nav-actions">
-        <nav ref={menu} id="main-menu" aria-label="Primary navigation" className={open ? 'is-open' : ''}>
+        <nav ref={menu} id="main-menu" aria-label={translation.primary} className={open ? 'is-open' : ''}>
           {links.map(([label, href]) => <a key={href} href={href} onClick={(event) => handleNavigation(event, href)}>{label}</a>)}
           <div className="mobile-language">{languageSwitcher}</div>
         </nav>
