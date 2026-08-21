@@ -11,42 +11,38 @@ export function ProjectsSection({ translation }: Props) {
           <h2 id="projects-title">{translation.title}</h2>
         </div>
         <div className="project-list">
-          <article>
-            <a
-              className="project-card project-card-featured project-card-link"
-              href="https://arviontstudio.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={translation.arviontLinkLabel}
-            >
-              <span className="project-number">01</span>
-              <div className="project-details">
-                <h3>ARVIONT STUDIO</h3>
-                <p className="project-category">{translation.arviontSubtitle}</p>
-                <p className="project-description">{translation.arviontDescription}</p>
-              </div>
-              <i aria-hidden="true">↗</i>
-            </a>
-          </article>
-          <article className="project-card project-card-featured">
-            <span className="project-number">02</span>
-            <div className="project-details">
-              <h3>WE CLUBS</h3>
-              <p className="project-category">{translation.weClubsSubtitle}</p>
-              <p className="project-description">{translation.weClubsDescription}</p>
-              <p className="project-status">{translation.status}</p>
-            </div>
-            <i aria-hidden="true">↗</i>
-          </article>
-          <article className="project-card project-card-confidential">
-            <span className="project-number">03</span>
-            <div className="project-details">
-              <h3>Top Secret</h3>
-              <p className="project-category">{translation.confidentialTwo}</p>
-              <p className="project-status">{translation.status}</p>
-            </div>
-            <span className="redacted" aria-hidden="true" />
-          </article>
+          {translation.projects.map((project) => {
+            const content = (
+              <>
+                <span className="project-number">{project.number}</span>
+                <div className="project-details">
+                  <h3>{project.title}</h3>
+                  <p className="project-category">{project.category}</p>
+                  <p className="project-description">{project.description}</p>
+                  {project.status && <p className="project-status">{project.status}</p>}
+                </div>
+                <i aria-hidden="true">↗</i>
+              </>
+            )
+
+            return project.url ? (
+              <article key={project.number}>
+                <a
+                  className="project-card project-card-featured project-card-link"
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={project.linkLabel}
+                >
+                  {content}
+                </a>
+              </article>
+            ) : (
+              <article key={project.number} className="project-card project-card-featured">
+                {content}
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>

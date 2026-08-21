@@ -1,5 +1,15 @@
 export type Language = 'it' | 'en'
 
+export type Project = {
+  number: string
+  title: string
+  category: string
+  description: string
+  status?: string
+  url?: string
+  linkLabel?: string
+}
+
 export type Translation = {
   loader: string
   nav: { about: string; work: string; services: string; contact: string; menu: string; close: string; language: string; primary: string }
@@ -8,13 +18,7 @@ export type Translation = {
   work: {
     label: string
     title: string
-    arviontSubtitle: string
-    arviontDescription: string
-    arviontLinkLabel: string
-    weClubsSubtitle: string
-    weClubsDescription: string
-    confidentialTwo: string
-    status: string
+    projects: Project[]
   }
   services: { label: string; title: string; items: string[] }
   contact: { label: string; title: string; copy: string; button: string }
@@ -53,13 +57,46 @@ export const translations: Record<Language, Translation> = {
     work: {
       label: '02 / Lavori in corso',
       title: 'In orbita.',
-      arviontSubtitle: 'Co-founder / Developer',
-      arviontDescription: 'Co-founder e developer di Arviont Studio, uno studio digitale dedicato alla creazione di identità, siti web ed esperienze digitali.',
-      arviontLinkLabel: 'Visita il sito di Arviont Studio',
-      weClubsSubtitle: 'Social app / Nightlife experience',
-      weClubsDescription: 'Un’applicazione dedicata a locali, eventi e vita sociale, progettata per connettere persone, serate e luoghi in un’unica esperienza digitale.',
-      confidentialTwo: 'Progetto riservato 02',
-      status: 'In sviluppo',
+      projects: [
+        {
+          number: '01',
+          title: 'ARVIONT STUDIO',
+          category: 'Co-founder / Developer',
+          description: 'Co-founder e developer di Arviont Studio, uno studio digitale dedicato alla creazione di identità, siti web ed esperienze digitali.',
+          url: 'https://arviontstudio.com/',
+          linkLabel: 'Visita il sito di Arviont Studio — si apre in una nuova scheda',
+        },
+        {
+          number: '02',
+          title: 'ROBERTA RABAZZI HAIR STUDIO',
+          category: 'Web design / Development',
+          description: 'Sito web e presenza digitale per un hair studio indipendente a Piombino.',
+          url: 'https://rrhairstudio.com/',
+          linkLabel: 'Visita il sito di Roberta Rabazzi Hair Studio — si apre in una nuova scheda',
+        },
+        {
+          number: '03',
+          title: 'SALVOSHOOTS',
+          category: 'Fotografia / Portfolio',
+          description: 'Portfolio fotografico editoriale per Salvatore Maniaci, costruito attorno a sequenza, ritmo visivo e storytelling.',
+          url: 'https://salvoshoots.com/',
+          linkLabel: 'Visita il portfolio fotografico SalvoShoots — si apre in una nuova scheda',
+        },
+        {
+          number: '04',
+          title: 'LA ROCCHETTA',
+          category: 'Ristorazione / Web experience',
+          description: 'Esperienza digitale per un ristorante a Piombino affacciato su Piazza Bovio e sul Tirreno.',
+          status: 'IN SVILUPPO',
+        },
+        {
+          number: '05',
+          title: 'DANIELA PIGHETTI',
+          category: 'Floral design / Web experience',
+          description: 'Esperienza digitale dedicata a floral design, matrimoni e atmosfere curate per eventi.',
+          status: 'IN SVILUPPO',
+        },
+      ],
     },
     services: {
       label: '03 / Competenze',
@@ -111,13 +148,46 @@ export const translations: Record<Language, Translation> = {
     work: {
       label: '02 / Work in progress',
       title: 'In orbit.',
-      arviontSubtitle: 'Co-founder / Developer',
-      arviontDescription: 'Co-founder and developer at Arviont Studio, a digital studio focused on creating identities, websites and digital experiences.',
-      arviontLinkLabel: 'Visit the Arviont Studio website',
-      weClubsSubtitle: 'Social app / Nightlife experience',
-      weClubsDescription: 'An application dedicated to venues, events and social life, designed to connect people, nights and places in one digital experience.',
-      confidentialTwo: 'Confidential project 02',
-      status: 'In development',
+      projects: [
+        {
+          number: '01',
+          title: 'ARVIONT STUDIO',
+          category: 'Co-founder / Developer',
+          description: 'Co-founder and developer at Arviont Studio, a digital studio focused on creating identities, websites and digital experiences.',
+          url: 'https://arviontstudio.com/',
+          linkLabel: 'Visit the Arviont Studio website — opens in a new tab',
+        },
+        {
+          number: '02',
+          title: 'ROBERTA RABAZZI HAIR STUDIO',
+          category: 'Web design / Development',
+          description: 'Website and digital presence for an independent hair studio in Piombino.',
+          url: 'https://rrhairstudio.com/',
+          linkLabel: 'Visit the Roberta Rabazzi Hair Studio website — opens in a new tab',
+        },
+        {
+          number: '03',
+          title: 'SALVOSHOOTS',
+          category: 'Photography / Portfolio',
+          description: 'Editorial photography portfolio for Salvatore Maniaci, focused on image sequencing and visual storytelling.',
+          url: 'https://salvoshoots.com/',
+          linkLabel: 'Visit the SalvoShoots photography portfolio — opens in a new tab',
+        },
+        {
+          number: '04',
+          title: 'LA ROCCHETTA',
+          category: 'Hospitality / Web experience',
+          description: 'Digital experience for a restaurant in Piombino overlooking Piazza Bovio and the Tyrrhenian coast.',
+          status: 'IN DEVELOPMENT',
+        },
+        {
+          number: '05',
+          title: 'DANIELA PIGHETTI',
+          category: 'Floral design / Web experience',
+          description: 'Digital experience focused on floral design, weddings and curated event atmospheres.',
+          status: 'IN DEVELOPMENT',
+        },
+      ],
     },
     services: {
       label: '03 / Capabilities',
