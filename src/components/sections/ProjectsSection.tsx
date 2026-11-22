@@ -78,7 +78,7 @@ export function ProjectsSection({ translation }: Props) {
                   >
                     <ProjectContent project={project} icon={<span className="folder-chevron">⌄</span>} />
                     <span className="folder-cue" aria-hidden="true">
-                      {isFolderOpen ? 'CLOSE FOLDER' : 'OPEN FOLDER'}
+                      {isFolderOpen ? translation.folderClose : translation.folderOpen}
                     </span>
                   </button>
                   <div

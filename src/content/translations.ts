@@ -19,6 +19,8 @@ export type Translation = {
   work: {
     label: string
     title: string
+    folderOpen: string
+    folderClose: string
     projects: Project[]
   }
   services: { label: string; title: string; items: string[] }
@@ -36,6 +38,7 @@ export type Translation = {
     linkedinLabel: string
     githubLabel: string
     emailLabel: string
+    socialLinks: { instagram: string; curriculum: string; linkedin: string; github: string; email: string }
   }
   meta: { title: string; description: string; locale: string; alternateLocale: string; imageAlt: string }
 }
@@ -45,7 +48,7 @@ export const translations: Record<Language, Translation> = {
     loader: 'INIZIALIZZAZIONE GRAVITÀ',
     nav: { about: 'Cosa faccio', work: 'Lavori', services: 'Servizi', contact: 'Contatti', menu: 'Menu', close: 'Chiudi', language: 'Seleziona lingua', primary: 'Navigazione principale' },
     hero: {
-      eyebrow: 'GABRIELE GENTILE — DEVELOPER & DIGITAL DESIGNER',
+      eyebrow: 'GABRIELE GENTILE — SVILUPPATORE & DESIGNER DIGITALE',
       title: 'Le idee hanno gravità.',
       copy: 'Sviluppo siti web, applicazioni e software gestionali, trasformando esigenze concrete in soluzioni semplici e funzionali.',
       scroll: 'Scorri per entrare',
@@ -53,79 +56,81 @@ export const translations: Record<Language, Translation> = {
     about: {
       label: '01 / Cosa faccio',
       title: 'Porto le idee\ndall’orbita\nalla realtà.',
-      body: 'Sono Gabriele Gentile, developer e digital designer. Studio informatica e trasformo esigenze concrete in siti web, applicazioni, software gestionali ed esperienze digitali semplici e funzionali, continuando a crescere attraverso progetti reali.',
+      body: 'Sono Gabriele Gentile, studente di Informatica e sviluppatore. Realizzo web app full-stack, software gestionali su PostgreSQL e hardware embedded basato su ESP32, crescendo attraverso progetti reali.',
     },
     work: {
       label: '02 / Lavori in corso',
       title: 'In orbita.',
+      folderOpen: 'APRI CARTELLA',
+      folderClose: 'CHIUDI CARTELLA',
       projects: [
         {
           number: '01',
           title: 'CAPRI-ZERO',
-          category: 'Embedded hardware / RF & cybersecurity',
-          description: 'Open-hardware portable multi-tool and RF testing device built around an ESP32-S3 microcontroller and CC1101 sub-1GHz transceiver, featuring custom firmware and 3D-printed hardware.',
+          category: 'HARDWARE EMBEDDED / RF & CYBERSECURITY',
+          description: 'Multi-tool RF portatile open-hardware basato su ESP32-S3 e CC1101 con firmware custom in C/C++.',
           url: 'https://github.com/ggbello576',
           linkLabel: 'Visita il profilo GitHub di Gabriele Gentile — si apre in una nuova scheda',
         },
         {
           number: '02',
-          title: 'SALON MANAGEMENT PLATFORM',
-          category: 'Full-stack web app / PostgreSQL & Node.js',
-          description: 'Custom end-to-end management system built from scratch for a hair salon in Pisa, handling appointment scheduling, client records, service workflows, and business operations.',
+          title: 'PIATTAFORMA GESTIONALE SALONE',
+          category: 'WEB APP FULL-STACK / POSTGRESQL & NODE.JS',
+          description: 'Software gestionale full-stack sviluppato da zero con PostgreSQL e Node.js per un salone a Pisa.',
           url: 'http://23.88.111.244/login?ritorno=%2F',
-          linkLabel: 'Apri la Salon Management Platform — si apre in una nuova scheda',
+          linkLabel: 'Apri la piattaforma gestionale del salone — si apre in una nuova scheda',
         },
         {
           number: '03',
-          title: 'CLIENT WEBSITES & DIGITAL EXPERIENCES',
-          category: 'Web design / Development archive (06 projects)',
-          description: 'Curated collection of custom websites, brand identities, and editorial digital experiences designed and developed for studios, restaurants, and local businesses.',
+          title: 'SITI WEB & ESPERIENZE DIGITALI',
+          category: 'WEB DESIGN / ARCHIVIO SVILUPPO (06 PROGETTI)',
+          description: 'Raccolta selezionata di siti web e identità digitali progettati e sviluppati per studi e attività locali.',
           children: [
             {
               number: '03.1',
               title: 'ARVIONT STUDIO',
-              category: 'Co-founder / Developer',
-              description: 'Co-founder e developer di Arviont Studio, uno studio digitale dedicato alla creazione di identità, siti web ed esperienze digitali.',
+              category: 'CO-FONDATORE / SVILUPPATORE',
+              description: 'Co-fondatore e sviluppatore di Arviont Studio, studio digitale dedicato alla creazione di identità, siti web ed esperienze digitali.',
               url: 'https://arviontstudio.com/',
               linkLabel: 'Visita il sito di Arviont Studio — si apre in una nuova scheda',
             },
             {
               number: '03.2',
               title: 'ROBERTA RABAZZI HAIR STUDIO',
-              category: 'Web design / Development',
-              description: 'Sito web e presenza digitale per un hair studio indipendente a Piombino.',
+              category: 'WEB DESIGN / SVILUPPO',
+              description: 'Sito web e presenza digitale per uno studio di acconciatura indipendente a Piombino.',
               url: 'https://rrhairstudio.com/',
               linkLabel: 'Visita il sito di Roberta Rabazzi Hair Studio — si apre in una nuova scheda',
             },
             {
               number: '03.3',
               title: 'SALVOSHOOTS',
-              category: 'Fotografia / Portfolio',
-              description: 'Portfolio fotografico editoriale per Salvatore Maniaci, costruito attorno a sequenza, ritmo visivo e storytelling.',
+              category: 'FOTOGRAFIA / PORTFOLIO',
+              description: 'Portfolio fotografico editoriale per Salvatore Maniaci, incentrato sulla sequenza delle immagini e sulla narrazione visiva.',
               url: 'https://salvoshoots.com/',
               linkLabel: 'Visita il portfolio fotografico SalvoShoots — si apre in una nuova scheda',
             },
             {
               number: '03.4',
               title: 'LA ROCCHETTA',
-              category: 'Ristorazione / Web experience',
-              description: 'Esperienza digitale per un ristorante a Piombino affacciato su Piazza Bovio e sul Tirreno.',
+              category: 'OSPITALITÀ / ESPERIENZA WEB',
+              description: 'Esperienza digitale per un ristorante di Piombino affacciato su Piazza Bovio e sul litorale tirrenico.',
               url: 'https://larocchettaristorante.com/',
               linkLabel: 'Visita il sito de La Rocchetta — si apre in una nuova scheda',
             },
             {
               number: '03.5',
               title: 'ANTELIA TATTOO',
-              category: 'Tattoo studio / Portfolio',
-              description: 'Sito web e portfolio editoriale per uno studio di tatuaggi a Piombino, costruito attorno ai lavori e all’identità di Antelia.',
+              category: 'STUDIO DI TATUAGGI / PORTFOLIO',
+              description: 'Sito web e portfolio editoriale per uno studio di tatuaggi a Piombino, costruito attorno al lavoro e all’identità di Antelia.',
               url: 'https://anteliatattoo.com/',
               linkLabel: 'Visita il sito di Antelia Tattoo — si apre in una nuova scheda',
             },
             {
               number: '03.6',
               title: 'DANIELA PIGHETTI',
-              category: 'Floral design / Web experience',
-              description: 'Esperienza digitale dedicata a floral design, matrimoni e atmosfere curate per eventi.',
+              category: 'DESIGN FLOREALE / ESPERIENZA WEB',
+              description: 'Esperienza digitale dedicata al design floreale, ai matrimoni e alle atmosfere curate per gli eventi.',
               status: 'IN SVILUPPO',
             },
           ],
@@ -135,7 +140,7 @@ export const translations: Record<Language, Translation> = {
     services: {
       label: '03 / Competenze',
       title: 'Idee che\ndiventano\ncodice.',
-      items: ['Siti e applicazioni web', 'Software gestionali', 'Backend e database', 'Soluzioni su misura'],
+      items: ['Applicazioni web full-stack', 'Software gestionali & SaaS', 'Sistemi backend & database', 'Hardware embedded & sistemi RF'],
     },
     contact: {
       label: '04 / Contatti',
@@ -146,7 +151,7 @@ export const translations: Record<Language, Translation> = {
     footer: {
       copyright: 'Gabriele Gentile',
       credits: 'Crediti 3D',
-      model: 'Modello “Blackhole”',
+      model: 'Modello “Buco nero”',
       by: 'di',
       via: 'tramite Sketchfab, utilizzato secondo la relativa',
       license: 'licenza Creative Commons con attribuzione',
@@ -156,13 +161,14 @@ export const translations: Record<Language, Translation> = {
       linkedinLabel: 'Profilo LinkedIn ufficiale di Gabriele Gentile — si apre in una nuova scheda',
       githubLabel: 'Profilo GitHub ufficiale di Gabriele Gentile — si apre in una nuova scheda',
       emailLabel: 'Invia un’email a Gabriele Gentile',
+      socialLinks: { instagram: 'Instagram', curriculum: 'CURRICULUM', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email' },
     },
     meta: {
-      title: 'Gabriele Gentile — Developer & Digital Designer',
-      description: 'Portfolio ufficiale di Gabriele Gentile, developer e digital designer. Siti web, applicazioni, software e progetti digitali selezionati.',
+      title: 'Gabriele Gentile — Sviluppatore & Designer Digitale',
+      description: 'Portfolio ufficiale di Gabriele Gentile, sviluppatore e designer digitale. Siti web, applicazioni, software e progetti digitali selezionati.',
       locale: 'it_IT',
       alternateLocale: 'en_US',
-      imageAlt: 'Logo Gabriele Gentile Developer su sfondo nero',
+      imageAlt: 'Logo Gabriele Gentile Sviluppatore su sfondo nero',
     },
   },
   en: {
@@ -177,17 +183,19 @@ export const translations: Record<Language, Translation> = {
     about: {
       label: '01 / What I do',
       title: 'I bring ideas\nfrom orbit\ninto reality.',
-      body: 'I’m Gabriele Gentile, a developer and digital designer. I study computer science and turn real needs into websites, applications, management software and clear, functional digital experiences while continuing to grow through real projects.',
+      body: "I'm Gabriele Gentile, a Computer Science student and developer. I build full-stack web apps, PostgreSQL management software, and ESP32-based embedded hardware, growing through real-world engineering projects.",
     },
     work: {
       label: '02 / Work in progress',
       title: 'In orbit.',
+      folderOpen: 'OPEN FOLDER',
+      folderClose: 'CLOSE FOLDER',
       projects: [
         {
           number: '01',
           title: 'CAPRI-ZERO',
           category: 'EMBEDDED HARDWARE / RF & CYBERSECURITY',
-          description: 'Open-hardware portable multi-tool and RF testing device built around an ESP32-S3 microcontroller and CC1101 sub-1GHz transceiver, featuring custom firmware and 3D-printed hardware.',
+          description: 'Open-hardware portable RF multi-tool built on ESP32-S3 and CC1101 with custom C/C++ firmware.',
           url: 'https://github.com/ggbello576',
           linkLabel: 'Visit Gabriele Gentile’s GitHub profile — opens in a new tab',
         },
@@ -195,7 +203,7 @@ export const translations: Record<Language, Translation> = {
           number: '02',
           title: 'SALON MANAGEMENT PLATFORM',
           category: 'FULL-STACK WEB APP / POSTGRESQL & NODE.JS',
-          description: 'Custom end-to-end management system built from scratch for a hair salon in Pisa, handling appointment scheduling, client records, service workflows, and business operations.',
+          description: 'Custom full-stack management software built from scratch with PostgreSQL and Node.js for a Pisa salon.',
           url: 'http://23.88.111.244/login?ritorno=%2F',
           linkLabel: 'Open the Salon Management Platform — opens in a new tab',
         },
@@ -203,7 +211,7 @@ export const translations: Record<Language, Translation> = {
           number: '03',
           title: 'CLIENT WEBSITES & DIGITAL EXPERIENCES',
           category: 'WEB DESIGN / DEVELOPMENT ARCHIVE (06 PROJECTS)',
-          description: 'Curated collection of custom websites, brand identities, and editorial digital experiences designed and developed for studios, restaurants, and local businesses.',
+          description: 'Curated archive of custom websites and digital identities designed and built for studios and local businesses.',
           children: [
             {
               number: '03.1',
@@ -259,7 +267,7 @@ export const translations: Record<Language, Translation> = {
     services: {
       label: '03 / Capabilities',
       title: 'Ideas that\nbecome\ncode.',
-      items: ['Websites and web applications', 'Management software', 'Backend and databases', 'Tailored solutions'],
+      items: ['FULL-STACK WEB APPLICATIONS', 'MANAGEMENT SOFTWARE & SAAS', 'BACKEND SYSTEMS & DATABASES', 'EMBEDDED HARDWARE & RF SYSTEMS'],
     },
     contact: {
       label: '04 / Contact',
@@ -280,6 +288,7 @@ export const translations: Record<Language, Translation> = {
       linkedinLabel: 'Gabriele Gentile’s official LinkedIn profile — opens in a new tab',
       githubLabel: 'Gabriele Gentile’s official GitHub profile — opens in a new tab',
       emailLabel: 'Send an email to Gabriele Gentile',
+      socialLinks: { instagram: 'Instagram', curriculum: 'CURRICULUM', linkedin: 'LinkedIn', github: 'GitHub', email: 'Email' },
     },
     meta: {
       title: 'Gabriele Gentile — Developer & Digital Designer',
